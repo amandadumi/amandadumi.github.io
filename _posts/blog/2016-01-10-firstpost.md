@@ -3,7 +3,6 @@ layout: post
 title: "first post"
 modified:
 categories: blog
-excerpt: ""
 tags: []
 ---
 
