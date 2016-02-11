@@ -1,0 +1,20 @@
+<p><a href="http://www.mathjax.org/">MathJax</a> is a simple way of including Tex/LaTex/MathML based mathematics in HTML webpages. To get up and running you need to include the MathJax script in the header of your github pages page, and then write some maths. For LaTex, there are two delimiters you need to know about, one for block or displayed mathematics <code class="highlighter-rouge">\[ ... \]</code>, and the other for inline mathematics <code class="highlighter-rouge">\( ... \)</code>.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>To enable MathJax support be sure Kramdown is your Markdown flavor of choice and MathJax is set to true in your <code class="highlighter-rouge">_config.yml</code> file.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>markdown: kramdown
+mathjax: true
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Here is an example MathJax inline rendering \\( 1/x^{2} \\), and here is a block rendering: 
+\\[ \frac{1}{n^{2}} \\]
+</code></pre>
+</div>
+
+<p>Here is an example MathJax inline rendering \( 1/x^{2} \), and here is a block rendering: 
+\[ \frac{1}{n^{2}} \]</p>
+
+<p>The only thing to look out for is the escaping of the backslash when using markdown, so the delimiters become <code class="highlighter-rouge">\\[ ... \\]</code> and <code class="highlighter-rouge">\\( ... \\)</code> for inline and block maths respectively.</p>

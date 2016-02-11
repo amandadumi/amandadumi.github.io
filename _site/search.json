@@ -2,6 +2,23 @@
 
   
     {
+      "title"			: "Firstpost",
+      "link"			: "http://localhost:4000/firstpost/",
+      "excerpt"		: "<p>I am beginning to develop my github blog! This will be the host of a digital resume, research statement, and a place to share any neat things I find to share. I’m excited to learn some html5This will be my first time working with HTML5 and github, so please be patient!</p>
+"
+    }
+  
+
+  
+    ,{
+      "title"			: "The first post",
+      "link"			: "http://localhost:4000/firstpost/",
+      "excerpt"		: ""
+    }
+  
+
+  
+    ,{
       "title"			: "MathJax Example",
       "link"			: "http://localhost:4000/blog/mathjax-example/",
       "excerpt"		: ""
@@ -10,9 +27,30 @@
 
   
     ,{
+      "title"			: "Mathjax Example",
+      "link"			: "http://localhost:4000/mathjax-example/",
+      "excerpt"		: "<p><a href="http://www.mathjax.org/">MathJax</a> is a simple way of including Tex/LaTex/MathML based mathematics in HTML webpages. To get up and running you need to include the MathJax script in the header of your github pages page, and then write some maths. For LaTex, there are two delimiters you need to know about, one for block or displayed mathematics <code class="highlighter-rouge">\[ ... \]</code>, and the other for inline mathematics <code class="highlighter-rouge">\( ... \)</code>.</p>
+
+"
+    }
+  
+
+  
+    ,{
       "title"			: "Hello World",
       "link"			: "http://localhost:4000/blog/hello-world/",
       "excerpt"		: ""
+    }
+  
+
+  
+    ,{
+      "title"			: "Hello World",
+      "link"			: "http://localhost:4000/hello-world/",
+      "excerpt"		: "<p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory - edit this post and re-build (or run with the <code class="highlighter-rouge">-w</code> switch) to see your changes!
+To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention: YYYY-MM-DD-name-of-post.ext.</p>
+
+"
     }
   
 
