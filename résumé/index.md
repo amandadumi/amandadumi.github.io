@@ -1,5 +1,4 @@
--
--
+---
 layout: page
 title: résumé 
 date: 2016-02-11T17:16:01-05:00

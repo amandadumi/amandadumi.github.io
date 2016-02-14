@@ -66,6 +66,14 @@ To add new posts, simply add a file in the <code class="highlighter-rouge">_post
   
 
   
+    ,{
+      "title"			: "résumé",
+      "link"			: "http://amandadumi.github.io/re%CC%81sume%CC%81/",
+      "excerpt"		: ""
+    }
+  
+
+  
 
   
 
