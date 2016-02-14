@@ -9,13 +9,17 @@ feature:
 ---
 
 # Amanda Dumi
-dumia@duq.edu
-amandaedumi@gmail.com
+ dumia@duq.edu
+ amandaedumi@gmail.com
+
 
 
 # Education
 **Graduate Student in Chemistry**
 *Duquesne University, Pittsburgh PA*
+
+**Bachelor of Science in Chemistry
+*Seton Hill University, Greensburgh, PA*
 
 
 # Computer Languages
@@ -45,3 +49,13 @@ amandaedumi@gmail.com
 **Program Presenter**
 *Carnegie Science Center; Pittsburgh, Pennsylvania*
 + Performing live shows to teach the adults and children about chemistry, physics, and biology 
++ Development of demonstrations, script, and staff safety measures for a new chemsitry show.
+
+
+#Honors
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
