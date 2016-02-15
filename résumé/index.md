@@ -60,16 +60,16 @@ amandaedumi@gmail.com
 <body>
 <table border="1">
 <tr>
-<th>Name</th>
-<th>Salary</th>
+<td>SACP College Award, *2014*</td>
+<td>The sister Leon Bettwy Chemistry Award, *2013*</td>
 </tr>
 <tr>
-<td>Ramesh Raman</td>
-<td>5000</td>
+<td>Who's Who Among American Universities, *2014*</td>
+<td> American Chemical Society Award, *2011*</td>
 </tr>
 <tr>
-<td>Shabbir Hussein</td>
-<td>7000</td>
+<td>Club of the Year Award, Chemistry Club, *2013*</td>
+<td> Deans List, *2010-13*</td>
 </tr>
 </table>
 </body>
