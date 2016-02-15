@@ -52,10 +52,26 @@ amandaedumi@gmail.com
 + Development of demonstrations, script, and staff safety measures for a new chemsitry show.  
 
 
-#Honors  
-| Tables        | Are           | Cool  |  
-| ------------- |:-------------:| -----:|  
-| col 3 is      | right-aligned | $1600 |  
-| col 2 is      | centered      |   $12 |  
-| zebra stripes | are neat      |    $1 |  
+#Honors   
+<html>
+<head>
+<title>HTML Table Header</title>
+</head>
+<body>
+<table border="1">
+<tr>
+<th>Name</th>
+<th>Salary</th>
+</tr>
+<tr>
+<td>Ramesh Raman</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>Shabbir Hussein</td>
+<td>7000</td>
+</tr>
+</table>
+</body>
+</html>
 
