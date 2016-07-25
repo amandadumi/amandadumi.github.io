@@ -52,7 +52,8 @@ amandaedumi@gmail.com
 + Development of demonstrations, script, and staff safety measures for a new chemsitry show.  
 
 
-#Honors   
+#Honors
+  
 <html>
 <head>
 <title>HTML Table Header</title>
@@ -61,15 +62,15 @@ amandaedumi@gmail.com
 <table border="1">
 <tr>
 <td>SACP College Award, *2014*</td>
-<td>The sister Leon Bettwy Chemistry Award, *2013*</td>
+<td>The sister Leon Bettwy Chemistry Award, 2013</td>
 </tr>
 <tr>
-<td>Who's Who Among American Universities, *2014*</td>
-<td> American Chemical Society Award, *2011*</td>
+<td>Who's Who Among American Universities, 2014</td>
+<td> American Chemical Society Award, 2011</td>
 </tr>
 <tr>
-<td>Club of the Year Award, Chemistry Club, *2013*</td>
-<td> Deans List, *2010-13*</td>
+<td>Club of the Year Award, Chemistry Club, 2013</td>
+<td> Deans List, 2010-13</td>
 </tr>
 </table>
 </body>
@@ -107,16 +108,16 @@ amandaedumi@gmail.com
 <body>
 <table border="1">
 <tr>
-<td>National Chemistry Week Instructor, *2010-12*</td>
-<td>Women in Science Day Guide, *2011-13*</td>
+<td>National Chemistry Week Instructor, 2010-12</td>
+<td>Women in Science Day Guide, 2011-13</td>
 </tr>
 <tr>
-<td>Habitat for Humanity; Oak Ridge, TN, *2014*</td>
-<td> Adopt-A-Highway; Greensburg, PA,  *2011-14*</td>
+<td>Habitat for Humanity; Oak Ridge, TN, 2014</td>
+<td> Adopt-A-Highway; Greensburg, PA,  2011-14</td>
 </tr>
 <tr>
-<td>PittCon Student Aide, *2013-14*</td>
-<td> Carnegie Mellon's Young Chemists Carnival 2013, *2013*</td>
+<td>PittCon Student Aide, 2013-14</td>
+<td> Carnegie Mellon's Young Chemists Carnival 2013</td>
 </tr>
 </table>
 </body>
