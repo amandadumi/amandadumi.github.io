@@ -9,6 +9,7 @@ feature:
 ---
 
 # Amanda Dumi
+A pdf version of my resemue can be found [here.]({{amandadumi.github.io}}/assets/cv.pdf)
 dumia@duq.edu  
 amandaedumi@gmail.com  
 
@@ -52,7 +53,7 @@ amandaedumi@gmail.com
 + Development of demonstrations, script, and staff safety measures for a new chemsitry show.  
 
 
-# honors
+# Honors
 
 <html>
 <head>
@@ -76,7 +77,7 @@ amandaedumi@gmail.com
 </body>
 </html>
 
-# activites
+# Activites
 <html>
 <head>
 <title>HTML Table Header</title>
@@ -99,7 +100,7 @@ amandaedumi@gmail.com
 </body>
 </html>
 
-# volunteer activities  
+# Volunteer Activities  
 
 <html>
 <head>
