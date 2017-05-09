@@ -2,18 +2,9 @@
 
   
     {
-      "title"			: "Firstpost",
-      "link"			: "http://amandadumi.github.io/firstpost/",
-      "excerpt"		: "<p>I am beginning to develop my github blog! This will be the host	of a digital resume, research statement, and a place to share any neat things.This will be my first time working with HTML5 and github, so please be patient!</p>
-"
-    }
-  
-
-  
-    ,{
-      "title"			: "Mathjax Example",
-      "link"			: "http://amandadumi.github.io/mathjax-example/",
-      "excerpt"		: "<p><a href="http://www.mathjax.org/">MathJax</a> is a simple way of including Tex/LaTex/MathML based mathematics in HTML webpages. To get up and running you need to include the MathJax script in the header of your github pages page, and then write some maths. For LaTex, there are two delimiters you need to know about, one for block or displayed mathematics <code class="highlighter-rouge">\[ ... \]</code>, and the other for inline mathematics <code class="highlighter-rouge">\( ... \)</code>.</p>
+      "title"			: " ",
+      "link"			: "http://amandadumi.github.io/Hartree-Fock/",
+      "excerpt"		: "<!-- When beginning graduate school, I joined Dr. Madura's computational research group with absolutely no programming experience. In learning about computational chemistry methods, one of the first methods I learned about and implemented was density functional Theory. However, my understanding of DFT and other computational chemistry methods wasn't really in perspective until  I learned about Hartree-Fock. Reading through Szabo and Ostlund was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. -->
 
 "
     }
@@ -21,10 +12,9 @@
 
   
     ,{
-      "title"			: "Hello World",
-      "link"			: "http://amandadumi.github.io/hello-world/",
-      "excerpt"		: "<p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory - edit this post and re-build (or run with the <code class="highlighter-rouge">-w</code> switch) to see your changes!
-To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention: YYYY-MM-DD-name-of-post.ext.</p>
+      "title"			: "Hartree-Fock",
+      "link"			: "http://amandadumi.github.io/Hartree-Fock/",
+      "excerpt"		: "<!-- When beginning graduate school, I joined Dr. Madura's computational research group with absolutely no programming experience. In learning about computational chemistry methods, one of the first methods I learned about and implemented was density functional Theory. However, my understanding of DFT and other computational chemistry methods wasn't really in perspective until  I learned about Hartree-Fock. Reading through Szabo and Ostlund was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. -->
 
 "
     }
