@@ -11,38 +11,11 @@
 
   
     ,{
-      "title"			: "first post",
-      "link"			: "http://amandadumi.github.io/blog/firstpost/",
-      "excerpt"		: "<p>I am beginning to develop my github blog! 
-<!--break-->
-This will be the host	of a digital resume, research statement, and a place to share any neat things.This will be my first time working with HTML5 and github, so please be patient!</p>
-"
-    }
-  
-
-  
-    ,{
-      "title"			: "MathJax Example",
-      "link"			: "http://amandadumi.github.io/blog/mathjax-example/",
-      "excerpt"		: ""
-    }
-  
-
-  
-    ,{
       "title"			: "Mathjax Example",
       "link"			: "http://amandadumi.github.io/mathjax-example/",
       "excerpt"		: "<p><a href="http://www.mathjax.org/">MathJax</a> is a simple way of including Tex/LaTex/MathML based mathematics in HTML webpages. To get up and running you need to include the MathJax script in the header of your github pages page, and then write some maths. For LaTex, there are two delimiters you need to know about, one for block or displayed mathematics <code class="highlighter-rouge">\[ ... \]</code>, and the other for inline mathematics <code class="highlighter-rouge">\( ... \)</code>.</p>
 
 "
-    }
-  
-
-  
-    ,{
-      "title"			: "Hello World",
-      "link"			: "http://amandadumi.github.io/blog/hello-world/",
-      "excerpt"		: ""
     }
   
 
