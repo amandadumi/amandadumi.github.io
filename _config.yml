@@ -11,6 +11,7 @@ url: http://amandadumi.github.io
 
 permalink:   /:categories/:title/
 markdown:    kramdown
+#markdown:    redcarpet
 highlighter: rouge
 sass:
   sass_dir: _sass
@@ -49,7 +50,7 @@ titlecase: true
 # Site owner
 owner:
   name: Amanda Dumi
-  avatar: bio-photo.jpg
+  avatar: me_poster.jpg
   email: Amanda.E.Dumi@gmail.com
   disqus-shortname:
   twitter: #username

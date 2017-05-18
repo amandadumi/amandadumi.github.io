@@ -1,0 +1,422 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Hartree-Fock &#8211; Amanda Dumi</title>
+<meta name="description" content="When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my github.
+
+">
+<meta name="keywords" content="">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Hartree-Fock">
+<meta name="twitter:description" content="When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my github.
+
+">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://amandadumi.github.io/images/wintertrees.jpg">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hartree-Fock">
+<meta property="og:description" content="When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my github.
+
+">
+<meta property="og:url" content="http://amandadumi.github.io/blog/Hartree-Fock/">
+<meta property="og:site_name" content="Amanda Dumi">
+
+
+
+
+
+<link rel="canonical" href="http://amandadumi.github.io/blog/Hartree-Fock/">
+<link href="http://amandadumi.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Amanda Dumi Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://amandadumi.github.io/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://amandadumi.github.io/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://amandadumi.github.io/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://amandadumi.github.io/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://amandadumi.github.io/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://amandadumi.github.io/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://amandadumi.github.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://amandadumi.github.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://amandadumi.github.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://amandadumi.github.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://amandadumi.github.io/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://amandadumi.github.io/résumé/" >Résumé</a></li>
+		  
+		    
+		    <li><a href="http://amandadumi.github.io/blog/" >Blog</a></li>
+		  
+		    
+		    <li><a href="http://amandadumi.github.io/search/" >Search</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+  		<a href="http://amandadumi.github.io/" class="site-logo" rel="home" title="Amanda Dumi"><img src="http://amandadumi.github.io/images/wintertrees.jpg" width="200" height="200" alt="Amanda Dumi logo" class="animated fadeInDown"></a>
+      
+      <h1 class="site-title animated fadeIn"><a href="http://amandadumi.github.io/">Amanda Dumi</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Attempting to become better at programming, solid state physics, and gardening.</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          
+        </ul>
+        
+          <h1 class="entry-title">Hartree-Fock</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://amandadumi.github.io/images/me_poster.jpg" class="bio-photo" alt="Amanda Dumi bio photo"></a>
+        
+        <span class="author vcard">By <span class="fn">Amanda Dumi</span></span>
+        <span class="entry-date date published"><time datetime="2017-05-08T00:00:00-04:00"><i class="fa fa-calendar-o"></i> May 08, 2017</time></span>
+        
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <p>When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my <a href="https://github.com/amandadumi/HartreeFock" title="Amanda's Hartree-Fock repository">github.</a></p>
+
+<p>Keeping in mind that our overall goal is to solve the  Schrödinger equation,
+<script type="math/tex">H\Psi = E \Psi</script> we need to establish the form of our wavefunction. Here we will used a single determinant, in other words, a set of spin orbitals that when placed in a determinant represent the ground state energy. The restraint on these orbitals is that they be orthonormal, or in other words
+For my code I utilized <a href="https://github.com/sunqm/pyscf" title="PySCF repository">PySCF</a> to extract the atomic orbitals that make up my determinant.</p>
+
+<script type="math/tex; mode=display">\langle\Psi\rvert = \chi_1\chi_2 \dots \chi_a\chi_b \dots \chi_N \quad \quad  \langle\chi_a\rvert\lvert\chi_b\rangle =\ \delta_{ab}</script>
+
+<p>The Hamiltonian for Hartree-Fock is as follows:</p>
+
+<script type="math/tex; mode=display">h(1)\ +\ \sum\limits_{b \neq a}\ J_b(1) + \sum\limits_{b \neq a}\ K_b(1)</script>
+
+<p>where <script type="math/tex">h(1)</script> will describe the kinetic energy and the potential resulting from the nuclei and an electron:  and <script type="math/tex">K_b(1)</script> represents the exchange operator.</p>
+
+<p>&lt;!– We can then express the problem as an eigenvalue problem as follows</p>
+
+<p><script type="math/tex">[h(1)\ +\ \sum\limits_{b \neq a}\ J_b(1) + K_b(1)]\chi_a\ = \ \epsilon\chi_a</script> –&gt;</p>
+
+<script type="math/tex; mode=display">h(1)\ =\ \frac{1}{2} \nabla^2 - \sum\limits_a\frac{Z_a}{r_{12}}</script>
+
+<p><script type="math/tex">J_b(1)  =\ \int dx_2 \lvert\chi_b(2)\rvert ^2 r_{12}^{-1}</script> represents the Coloumb operator and describes the force on electron 1 in <script type="math/tex">\chi_a</script> affected by electron 2  in <script type="math/tex">\chi_b</script>. However, we replace the explicit exression by a one electron potential obtained by averaging the interaction $r_{12}^{-1}$. it is said to describe the average local potential at $x_1$ arrived from $\chi_b$.</p>
+
+<script type="math/tex; mode=display">K_b(1)\ =\ \int dx_2\chi_b^*(2)r_{12}^{-1}\chi_a(2)</script>
+
+<p>First defining the molecule:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mol = gto.M(
+atom = [['O', (0.000000000000,  -0.143225816552,   0.000000000000)],
+        ['H', (1.638036840407,   1.136548822547,  -0.000000000000)],  
+        ['H', (-1.638036840407,   1.136548822547,  -0.000000000000)]],  
+#basis = '6-31G',  
+basis = 'sto-3g',  
+verbose = 1,  
+unit='b',  
+symmetry=False)  
+</code></pre>
+</div>
+
+<p>We can then extract some of the necessary values</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mo_coefficients = myhf.mo_coeff
+</code></pre>
+</div>
+
+<h1 id="steps-to-hartree-fock">Steps to Hartree-Fock</h1>
+
+<h5 id="define-the-variable-for-the-nuclear-nuclear-repulsion-energy">1. Define the variable for the nuclear-nuclear repulsion energy</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Enuc = gto.mole.energy_nuc(mol)
+print Enuc
+</code></pre>
+</div>
+
+<h5 id="read-in-the-one-electron-integrals">2. Read in the one-electron integrals.</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ovlp = myhf.get_ovlp()
+h1e =myhf.get_hcore()
+</code></pre>
+</div>
+
+<h5 id="read-in-the-two-electron-integrals">3. Read in the two-electron integrals</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>eri = mol.intor('cint2e_sph',aosym=4)
+print np.shape(eri)
+</code></pre>
+</div>
+
+<h5 id="as-a-check-described-by-evangelista-check-that-the-following-sums-are-correct">4. As a check described by Evangelista, check that the following sums are correct</h5>
+
+<h5 id="form-the-inverse-of-the-overlap-matrix">5. Form the inverse of the overlap matrix.</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    def orthogonalize(Smatrix):
+        S_eval,S_evec = spla.eigh(Smatrix)
+        #diagonalize the matrix
+        S_eval_square=sp.zeros((7,7),dtype = np.float64)
+        for i in range(len(S_eval)):
+           S_eval_square[i,i] = S_eval[i]
+
+        eval_change=sp.zeros((len(S_eval),len(S_eval)),dtype = np.float64)
+        for i in range(len(eval_change)):
+            eval_change[i,i]=1/sp.sqrt(S_eval[i])
+
+        SOM = np.dot(S_evec,np.dot(eval_change,S_evec.T))
+        return SOM
+</code></pre>
+</div>
+
+<h5 id="form-the-g-matrix">6. form the G matrix</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def G_matrix(old_Dmatrix,two_e_integrals):
+    G = np.zeros(np.shape(old_Dmatrix))
+    c=0
+    for i in range(len(old_Dmatrix)):
+        for j in range(len(old_Dmatrix)):
+            for m in range(len(old_Dmatrix)):
+                for n in range(len(old_Dmatrix)):
+                    c += (old_Dmatrix[m,n])*((2.0*two_e_integrals[idx4(i,j,m,n)])-two_e_integrals[idx4(i,m,j,n)])
+            G[i,j] = c
+            c = 0
+    return G
+</code></pre>
+</div>
+
+<h5 id="form-the-fock-matrix-and-compute-the-total-energy">7. Form the Fock matrix and compute the total energy</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def F_matrix(Hcore,Gmatrix):
+        F = np.zeros(np.shape(Hcore))
+        for i in range(len(F)):
+            for j in range(len(F)):
+                F[i,j] = Hcore[i,j] + G[i,j]
+        return F
+</code></pre>
+</div>
+
+<h5 id="now-transform-the-fock-matrix-to-represent-orthonormal-atomic-orbitals">8. now transform the Fock matrix to represent orthonormal atomic orbitals.</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def orthogonalize(Smatrix):
+    S_eval,S_evec = spla.eigh(Smatrix)
+    #diagonalize the matrix
+    S_eval_square=sp.zeros((7,7),dtype = np.float64)
+    for i in range(len(S_eval)):
+       S_eval_square[i,i] = S_eval[i]
+
+    eval_change=sp.zeros((len(S_eval),len(S_eval)),dtype = np.float64)
+    for i in range(len(eval_change)):
+        eval_change[i,i]=1/sp.sqrt(S_eval[i])
+
+    SOM = np.dot(S_evec,np.dot(eval_change,S_evec.T))   #This is the symmetric orthogonalization matrix. Right compared to crawdad
+    #Y = np.dot(np.transpose(SOM),np.dot(S,SOM)) #should be an identity matrix if done correctly.
+    #print Y
+    return SOM
+</code></pre>
+</div>
+
+<h5 id="find-the-eigenvalue-and-eigenvectors-of-the-fock-matrix-in-the-orthonormal-basis-set-and-transform-them-back-into-the-atomic-orbital-basis-set">9. Find the eigenvalue and eigenvectors of the Fock matrix in the orthonormal basis set and transform them back into the atomic orbital basis set.</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def diagonalize(ortho, Fmatrix):
+    F_prime = sp.dot(SOM,sp.dot(F,SOM))
+    f_eval, f_evec = spla.eigh(F_prime)
+    C = sp.dot(SOM,f_evec)
+    return C
+</code></pre>
+</div>
+
+<h5 id="form-the-density-matrix">10. Form the density matrix</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def D_matrix(Hcore,C):
+    D = np.zeros(np.shape(Hcore))
+    temp = 0
+    for u in range(len(D)):
+        for v in range(len(D)):
+            for i in range(num_elec/2):
+                temp += C[u,i] * C[v,i]
+            D[u,v]=temp
+            temp = 0
+    return D
+</code></pre>
+</div>
+
+<h5 id="test-for-convergence">11. Test for convergence</h5>
+<p>a. Energy Difference
+  b. root mean square error of the density.</p>
+
+<p>def RMSD(new_Dmatrix,old_Dmatrix):
+        RMS = new_Dmatrix - old_Dmatrix
+        RMS = np.power(RMS,2)
+        RMS = np.sum(RMS)
+        RMS = np.sqrt(RMS)
+        return RMS</p>
+
+<h5 id="initialize-your-variables">12. Initialize your variables</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>myhf = scf.RHF(mol)
+E_hf = myhf.kernel()
+D=np.zeros((len(Hcore),len(Hcore)),dtype = np.float64)
+k=0
+E_threshold = 1e-9
+D_threshold = 1e-5
+convergence = False
+Etot_old  = 0
+Etot_new  = 0
+</code></pre>
+</div>
+
+<h5 id="repeat-until-convergence">14. Repeat until convergence.</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>while (convergence == False):
+    print '###################### iteration',k,' #######################'
+    Dold = np.copy(D)
+
+    ##### G matrix#####
+    G=G_matrix(Dold,eri)
+    k+=1
+
+    #####fock matrix######
+    F = F_matrix(Hcore,G)
+
+    ###calculate total energy###
+    Etot_old = Etot_new
+    Eelec = Eelec_calc(Dold,Hcore,F)
+    Etot_new = Enuc + Eelec
+
+    #### Find orbital coefficients ###
+    C = diagonalize(SOM,F)
+
+    ### Denisty matrix###
+    D = D_matrix(Hcore,C)
+
+    #RMS of D
+    RMS = 0
+    RMS=RMSD(D,Dold)
+    print 'RMS \t',RMS
+
+    # energy difference
+    E_diff = np.abs(Etot_new - Etot_old)
+
+    if (E_diff &lt; E_threshold) and (RMS &lt; D_threshold):
+        convergence = True
+
+    print 'E_diff: ', E_diff
+    #print 'old', Etot_old
+    #print 'new',Etot_new
+print 'final (Ha)', Etot_new
+print 'error (Ha)', np.abs(Etot_new - true_value)
+print 'final step count', k
+</code></pre>
+</div>
+
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+      
+        <a href="http://amandadumi.github.io/Hartree-Fock/" class="btn" title=" ">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2017 Amanda Dumi. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://github.com/amandadumi" title="Amanda Dumi on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://amandadumi.github.io/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://amandadumi.github.io';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://amandadumi.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://amandadumi.github.io/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
     {
       "title"			: " ",
       "link"			: "http://amandadumi.github.io/Hartree-Fock/",
-      "excerpt"		: "<!-- When beginning graduate school, I joined Dr. Madura's computational research group with absolutely no programming experience. In learning about computational chemistry methods, one of the first methods I learned about and implemented was density functional Theory. However, my understanding of DFT and other computational chemistry methods wasn't really in perspective until  I learned about Hartree-Fock. Reading through Szabo and Ostlund was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. -->
+      "excerpt"		: "<p>When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my <a href="https://github.com/amandadumi/HartreeFock" title="Amanda's Hartree-Fock repository">github.</a></p>
 
 "
     }
@@ -13,8 +13,8 @@
   
     ,{
       "title"			: "Hartree-Fock",
-      "link"			: "http://amandadumi.github.io/Hartree-Fock/",
-      "excerpt"		: "<!-- When beginning graduate school, I joined Dr. Madura's computational research group with absolutely no programming experience. In learning about computational chemistry methods, one of the first methods I learned about and implemented was density functional Theory. However, my understanding of DFT and other computational chemistry methods wasn't really in perspective until  I learned about Hartree-Fock. Reading through Szabo and Ostlund was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. -->
+      "link"			: "http://amandadumi.github.io/blog/Hartree-Fock/",
+      "excerpt"		: "<p>When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my <a href="https://github.com/amandadumi/HartreeFock" title="Amanda's Hartree-Fock repository">github.</a></p>
 
 "
     }
