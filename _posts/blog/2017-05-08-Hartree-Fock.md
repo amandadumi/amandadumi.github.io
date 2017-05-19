@@ -26,13 +26,13 @@ $$[h(1)\ +\ \sum\limits_{b \neq a}\ J_b(1) + K_b(1)]\chi_a\ = \ \epsilon\chi_a$$
 
  $$h(1)\ =\ \frac{1}{2} \nabla^2 - \sum\limits_a\frac{Z_a}{r_{12}}$$
 
-$$J_b(1)  =\ \int dx_2 \lvert\chi_b(2)\rvert ^2 r_{12}^{-1}$$ represents the Coloumb operator and describes the force on electron 1 in $$\chi_a$$ affected by electron 2  in $$\chi_b$$. However, we replace the explicit exression by a one electron potential obtained by averaging the interaction $r_{12}^{-1}$. it is said to describe the average local potential at $x_1$ arrived from $\chi_b$.
+$$J_b(1)  =\ \int dx_2 \lvert\chi_b(2)\rvert ^2 r_{12}^{-1}$$ represents the Coulomb operator and describes the force on electron 1 in $$\chi_a$$ affected by electron 2  in $$\chi_b$$. However, we replace the explicit expression by a one electron potential obtained by averaging the interaction $r_{12}^{-1}$. it is said to describe the average local potential at $$x_1$$ arrived from $$\chi_b$$.
 
 
  $$K_b(1)\ =\ \int dx_2\chi_b^*(2)r_{12}^{-1}\chi_a(2) $$
 
 
-First defining the molecule:
+First a molecule is defined using PySCF. We will be treating water as an example. We will describe our basis set with sto-3g. The code block below describes the position of each atom in cartesian coordinates.
 
 
     mol = gto.M(
@@ -66,7 +66,7 @@ We can then extract some of the necessary values
 #####2. Read in the one-electron integrals.  
 
     ovlp = myhf.get_ovlp()
-    h1e =myhf.get_hcore()
+    h1e = myhf.get_hcore()
 
 
 #####3. Read in the two-electron integrals
@@ -82,7 +82,7 @@ We can then extract some of the necessary values
         def orthogonalize(Smatrix):
             S_eval,S_evec = spla.eigh(Smatrix)
             #diagonalize the matrix
-            S_eval_square=sp.zeros((7,7),dtype = np.float64)
+            S_eval_square=sp.zeros((7, 7),dtype = np.float64)
             for i in range(len(S_eval)):
                S_eval_square[i,i] = S_eval[i]
 
@@ -201,11 +201,11 @@ def RMSD(new_Dmatrix,old_Dmatrix):
         print '###################### iteration',k,' #######################'
         Dold = np.copy(D)
 
-        ##### G matrix#####
+        ### G matrix ###
         G=G_matrix(Dold,eri)
         k+=1
 
-        #####fock matrix######
+        ### Fock matrix ###
         F = F_matrix(Hcore,G)
 
         ###calculate total energy###
@@ -216,23 +216,22 @@ def RMSD(new_Dmatrix,old_Dmatrix):
         #### Find orbital coefficients ###
         C = diagonalize(SOM,F)
 
-        ### Denisty matrix###
+        ### Denisty matrix ###
         D = D_matrix(Hcore,C)
 
-        #RMS of D
+        #### RMSD of density matrix ###
         RMS = 0
         RMS=RMSD(D,Dold)
         print 'RMS \t',RMS
 
-        # energy difference
+        ### Energy difference ###
         E_diff = np.abs(Etot_new - Etot_old)
 
         if (E_diff < E_threshold) and (RMS < D_threshold):
             convergence = True
 
         print 'E_diff: ', E_diff
-        #print 'old', Etot_old
-        #print 'new',Etot_new
-    print 'final (Ha)', Etot_new
-    print 'error (Ha)', np.abs(Etot_new - true_value)
-    print 'final step count', k
+
+    print 'final (Ha)': {}.format( tot_new)
+    print 'error (Ha): {}'.format(np.abs(Etot_new - true_value))
+    print 'final step count: {}'.format(k)

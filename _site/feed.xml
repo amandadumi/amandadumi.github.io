@@ -4,270 +4,13 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://amandadumi.github.io/feed.xml" />
 <link rel="alternate" type="text/html" href="http://amandadumi.github.io" />
-<updated>2017-05-18T12:38:50-04:00</updated>
+<updated>2017-05-19T19:21:23-04:00</updated>
 <id>http://amandadumi.github.io/</id>
 <author>
   <name>Amanda Dumi</name>
   <uri>http://amandadumi.github.io/</uri>
   <email>Amanda.E.Dumi@gmail.com</email>
 </author>
-
-
-<entry>
-  <title type="html"><![CDATA[ ]]></title>
-  <link rel="alternate" type="text/html" href="http://amandadumi.github.io/Hartree-Fock/" />
-  <id>http://amandadumi.github.io/Hartree-Fock</id>
-  <published>2017-05-08T00:00:00-04:00</published>
-  <updated>2017-05-08T00:00:00-04:00</updated>
-  <author>
-    <name>Amanda Dumi</name>
-    <uri>http://amandadumi.github.io</uri>
-    <email>Amanda.E.Dumi@gmail.com</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my &lt;a href=&quot;https://github.com/amandadumi/HartreeFock&quot; title=&quot;Amanda&#39;s Hartree-Fock repository&quot;&gt;github.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Keeping in mind that our overall goal is to solve the  Schrödinger equation,
-&lt;script type=&quot;math/tex&quot;&gt;H\Psi = E \Psi&lt;/script&gt; we need to establish the form of our wavefunction. Here we will used a single determinant, in other words, a set of spin orbitals that when placed in a determinant represent the ground state energy. The restraint on these orbitals is that they be orthonormal, or in other words
-For my code I utilized &lt;a href=&quot;https://github.com/sunqm/pyscf&quot; title=&quot;PySCF repository&quot;&gt;PySCF&lt;/a&gt; to extract the atomic orbitals that make up my determinant.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\langle\Psi\rvert = \chi_1\chi_2 \dots \chi_a\chi_b \dots \chi_N \quad \quad  \langle\chi_a\rvert\lvert\chi_b\rangle =\ \delta_{ab}&lt;/script&gt;
-
-&lt;p&gt;The Hamiltonian for Hartree-Fock is as follows:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;h(1)\ +\ \sum\limits_{b \neq a}\ J_b(1) + K_b(1)&lt;/script&gt;
-
-&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;h(1)&lt;/script&gt; will describe the kinetic energy and the potential resulting from the nuclei and an electron, &lt;script type=&quot;math/tex&quot;&gt;J_b(1)&lt;/script&gt; represents the Coulomb operator, and &lt;script type=&quot;math/tex&quot;&gt;K_b(1)&lt;/script&gt; represents the exchange operator. We can then express the problem as an eigenvalue problem as follows&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;[h(1)\ +\ \sum\limits\_{b \neq a}\ J\_b(1) + K\_b(1)]\chi\_a\ = \ \epsilon\chi\_a&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;h(1)\ =\ \frac{1}{2} \nabla^2 - \sum\limits_a\frac{Z_a}{r_12}&lt;/script&gt;
-
-&lt;p&gt;$$J_b(1)\ =\ $\int dx_2\lvert\chi_b(2)\rvert^2r_{12}^{-1}$&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;K_b(1)\ =\ \int dx_2\chi_b^*(2)r_{12}^{-1}\chi_a(2)&lt;/script&gt;
-
-&lt;p&gt;First defining the molecule:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-mol = gto.M(
-    atom = [[&#39;O&#39;, (0.000000000000,  -0.143225816552,   0.000000000000)],  
-            [&#39;H&#39;, (1.638036840407,   1.136548822547,  -0.000000000000)],  
-            [&#39;H&#39;, (-1.638036840407,   1.136548822547,  -0.000000000000)]],  
-    #basis = &#39;6-31G&#39;,  
-    basis = &#39;sto-3g&#39;,  
-    verbose = 1,  
-    unit=&#39;b&#39;,  
-    symmetry=False)  
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;We can then extract some of the necessary values&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-mo_coefficients = myhf.mo_coeff
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;steps-to-hartree-fock&quot;&gt;Steps to Hartree-Fock&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Define the variable for the nuclear-nuclear repulsion energy&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-Enuc = gto.mole.energy_nuc(mol)
-print Enuc
-&lt;/code&gt;
-2. read in the one-electron integrals.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-ovlp = myhf.get_ovlp()
-h1e =myhf.get_hcore()
-&lt;/code&gt;
-3. read in the two-electron integrals&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-eri = mol.intor(&#39;cint2e_sph&#39;,aosym=4)
-print np.shape(eri)
-&lt;/code&gt;
-4. As a check described by Evangelista, check that the following sums are correct
-5. Form the inverse of the overlap matrix.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    ```python
-    def orthogonalize(Smatrix):
-        S_eval,S_evec = spla.eigh(Smatrix)
-        #diagonalize the matrix
-        S_eval_square=sp.zeros((7,7),dtype = np.float64)
-        for i in range(len(S_eval)):
-           S_eval_square[i,i] = S_eval[i]
-
-        eval_change=sp.zeros((len(S_eval),len(S_eval)),dtype = np.float64)
-        for i in range(len(eval_change)):
-            eval_change[i,i]=1/sp.sqrt(S_eval[i])
-
-        SOM = np.dot(S_evec,np.dot(eval_change,S_evec.T))
-        return SOM
-    ```   7. form the G matrix
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-def G_matrix(old_Dmatrix,two_e_integrals):
-    G = np.zeros(np.shape(old_Dmatrix))
-    c=0
-    for i in range(len(old_Dmatrix)):
-        for j in range(len(old_Dmatrix)):
-            for m in range(len(old_Dmatrix)):
-                for n in range(len(old_Dmatrix)):
-                    c += (old_Dmatrix[m,n])*((2.0*two_e_integrals[idx4(i,j,m,n)])-two_e_integrals[idx4(i,m,j,n)])
-            G[i,j] = c
-            c = 0
-    return G
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Form the Fock matrix and compute the total energy&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-def F_matrix(Hcore,Gmatrix):
-        F = np.zeros(np.shape(Hcore))
-        for i in range(len(F)):
-            for j in range(len(F)):
-                F[i,j] = Hcore[i,j] + G[i,j]
-        return F
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;now transform the Fock matrix to represent orthonormal atomic orbitals.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;```python
-def orthogonalize(Smatrix):
-    S_eval,S_evec = spla.eigh(Smatrix)
-    #diagonalize the matrix
-    S_eval_square=sp.zeros((7,7),dtype = np.float64)
-    for i in range(len(S_eval)):
-       S_eval_square[i,i] = S_eval[i]&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;eval_change=sp.zeros((len(S_eval),len(S_eval)),dtype = np.float64)
-for i in range(len(eval_change)):
-    eval_change[i,i]=1/sp.sqrt(S_eval[i])
-
-SOM = np.dot(S_evec,np.dot(eval_change,S_evec.T))   #This is the symmetric orthogonalization matrix. Right compared to crawdad
-#Y = np.dot(np.transpose(SOM),np.dot(S,SOM)) #should be an identity matrix if done correctly.
-#print Y
-return SOM ```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Find the eigenvalue and eigenvectors of the Fock matrix in the orthonormal basis set and transform them back into the atomic orbital basis set.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;```python
-def diagonalize(ortho, Fmatrix):
-    F_prime = sp.dot(SOM,sp.dot(F,SOM))
-    f_eval, f_evec = spla.eigh(F_prime)
-    C = sp.dot(SOM,f_evec)
-    return C&lt;/p&gt;
-
-&lt;p&gt;```&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Form the density matrix&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-def D_matrix(Hcore,C):
-    D = np.zeros(np.shape(Hcore))
-    temp = 0
-    for u in range(len(D)):
-        for v in range(len(D)):
-            for i in range(num_elec/2):
-                temp += C[u,i] * C[v,i]
-            D[u,v]=temp
-            temp = 0
-    return D
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Test for convergence
-..* Energy Difference
-..* root mean square error of the density.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-def RMSD(new_Dmatrix,old_Dmatrix):
-        RMS = new_Dmatrix - old_Dmatrix
-        RMS = np.power(RMS,2)
-        RMS = np.sum(RMS)
-        RMS = np.sqrt(RMS)
-        return RMS
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Initialize your variables&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python
-myhf = scf.RHF(mol)
-E_hf = myhf.kernel()
-D=np.zeros((len(Hcore),len(Hcore)),dtype = np.float64)
-k=0
-E_threshold = 1e-9
-D_threshold = 1e-5
-convergence = False
-Etot_old  = 0
-Etot_new  = 0
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Repeat until convergence.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;```python
-while (convergence == False):
-    print ‘###################### iteration’,k,’ #######################’
-    Dold = np.copy(D)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;##### G matrix#####
-G=G_matrix(Dold,eri)
-k+=1
-
-#####fock matrix######
-F = F_matrix(Hcore,G)
-
-###calculate total energy###
-Etot_old = Etot_new
-Eelec = Eelec_calc(Dold,Hcore,F)
-Etot_new = Enuc + Eelec
-
-#### Find orbital coefficients ###
-C = diagonalize(SOM,F)
-
-### Denisty matrix###
-D = D_matrix(Hcore,C)
-
-#RMS of D
-RMS = 0
-RMS=RMSD(D,Dold)
-print &#39;RMS \t&#39;,RMS
-
-# energy difference
-E_diff = np.abs(Etot_new - Etot_old)
-
-if (E_diff &amp;lt; E_threshold) and (RMS &amp;lt; D_threshold):
-    convergence = True
-
-print &#39;E_diff: &#39;, E_diff
-#print &#39;old&#39;, Etot_old
-#print &#39;new&#39;,Etot_new print &#39;final (Ha)&#39;, Etot_new print &#39;error (Ha)&#39;, np.abs(Etot_new - true_value) print &#39;final step count&#39;, k ```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-    &lt;p&gt;&lt;a href=&quot;http://amandadumi.github.io/Hartree-Fock/&quot;&gt; &lt;/a&gt; was originally published by Amanda Dumi at &lt;a href=&quot;http://amandadumi.github.io&quot;&gt;Amanda Dumi&lt;/a&gt; on May 08, 2017.&lt;/p&gt;
-  </content>
-</entry>
 
 
 <entry>
@@ -302,11 +45,11 @@ For my code I utilized &lt;a href=&quot;https://github.com/sunqm/pyscf&quot; tit
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;h(1)\ =\ \frac{1}{2} \nabla^2 - \sum\limits_a\frac{Z_a}{r_{12}}&lt;/script&gt;
 
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;J_b(1)  =\ \int dx_2 \lvert\chi_b(2)\rvert ^2 r_{12}^{-1}&lt;/script&gt; represents the Coloumb operator and describes the force on electron 1 in &lt;script type=&quot;math/tex&quot;&gt;\chi_a&lt;/script&gt; affected by electron 2  in &lt;script type=&quot;math/tex&quot;&gt;\chi_b&lt;/script&gt;. However, we replace the explicit exression by a one electron potential obtained by averaging the interaction $r_{12}^{-1}$. it is said to describe the average local potential at $x_1$ arrived from $\chi_b$.&lt;/p&gt;
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;J_b(1)  =\ \int dx_2 \lvert\chi_b(2)\rvert ^2 r_{12}^{-1}&lt;/script&gt; represents the Coulomb operator and describes the force on electron 1 in &lt;script type=&quot;math/tex&quot;&gt;\chi_a&lt;/script&gt; affected by electron 2  in &lt;script type=&quot;math/tex&quot;&gt;\chi_b&lt;/script&gt;. However, we replace the explicit expression by a one electron potential obtained by averaging the interaction $r_{12}^{-1}$. it is said to describe the average local potential at &lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt; arrived from &lt;script type=&quot;math/tex&quot;&gt;\chi_b&lt;/script&gt;.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;K_b(1)\ =\ \int dx_2\chi_b^*(2)r_{12}^{-1}\chi_a(2)&lt;/script&gt;
 
-&lt;p&gt;First defining the molecule:&lt;/p&gt;
+&lt;p&gt;First a molecule is defined using PySCF. We will be treating water as an example. We will describe our basis set with sto-3g. The code block below describes the position of each atom in cartesian coordinates.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mol = gto.M(
 atom = [[&#39;O&#39;, (0.000000000000,  -0.143225816552,   0.000000000000)],
@@ -338,7 +81,7 @@ print Enuc
 &lt;h5 id=&quot;read-in-the-one-electron-integrals&quot;&gt;2. Read in the one-electron integrals.&lt;/h5&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ovlp = myhf.get_ovlp()
-h1e =myhf.get_hcore()
+h1e = myhf.get_hcore()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -356,7 +99,7 @@ print np.shape(eri)
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    def orthogonalize(Smatrix):
         S_eval,S_evec = spla.eigh(Smatrix)
         #diagonalize the matrix
-        S_eval_square=sp.zeros((7,7),dtype = np.float64)
+        S_eval_square=sp.zeros((7, 7),dtype = np.float64)
         for i in range(len(S_eval)):
            S_eval_square[i,i] = S_eval[i]
 
@@ -472,11 +215,11 @@ Etot_new  = 0
     print &#39;###################### iteration&#39;,k,&#39; #######################&#39;
     Dold = np.copy(D)
 
-    ##### G matrix#####
+    ### G matrix ###
     G=G_matrix(Dold,eri)
     k+=1
 
-    #####fock matrix######
+    ### Fock matrix ###
     F = F_matrix(Hcore,G)
 
     ###calculate total energy###
@@ -487,26 +230,25 @@ Etot_new  = 0
     #### Find orbital coefficients ###
     C = diagonalize(SOM,F)
 
-    ### Denisty matrix###
+    ### Denisty matrix ###
     D = D_matrix(Hcore,C)
 
-    #RMS of D
+    #### RMSD of density matrix ###
     RMS = 0
     RMS=RMSD(D,Dold)
     print &#39;RMS \t&#39;,RMS
 
-    # energy difference
+    ### Energy difference ###
     E_diff = np.abs(Etot_new - Etot_old)
 
     if (E_diff &amp;lt; E_threshold) and (RMS &amp;lt; D_threshold):
         convergence = True
 
     print &#39;E_diff: &#39;, E_diff
-    #print &#39;old&#39;, Etot_old
-    #print &#39;new&#39;,Etot_new
-print &#39;final (Ha)&#39;, Etot_new
-print &#39;error (Ha)&#39;, np.abs(Etot_new - true_value)
-print &#39;final step count&#39;, k
+
+print &#39;final (Ha)&#39;: {}.format( tot_new)
+print &#39;error (Ha): {}&#39;.format(np.abs(Etot_new - true_value))
+print &#39;final step count: {}&#39;.format(k)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 

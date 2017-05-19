@@ -164,11 +164,11 @@ For my code I utilized <a href="https://github.com/sunqm/pyscf" title="PySCF rep
 
 <script type="math/tex; mode=display">h(1)\ =\ \frac{1}{2} \nabla^2 - \sum\limits_a\frac{Z_a}{r_{12}}</script>
 
-<p><script type="math/tex">J_b(1)  =\ \int dx_2 \lvert\chi_b(2)\rvert ^2 r_{12}^{-1}</script> represents the Coloumb operator and describes the force on electron 1 in <script type="math/tex">\chi_a</script> affected by electron 2  in <script type="math/tex">\chi_b</script>. However, we replace the explicit exression by a one electron potential obtained by averaging the interaction $r_{12}^{-1}$. it is said to describe the average local potential at $x_1$ arrived from $\chi_b$.</p>
+<p><script type="math/tex">J_b(1)  =\ \int dx_2 \lvert\chi_b(2)\rvert ^2 r_{12}^{-1}</script> represents the Coulomb operator and describes the force on electron 1 in <script type="math/tex">\chi_a</script> affected by electron 2  in <script type="math/tex">\chi_b</script>. However, we replace the explicit expression by a one electron potential obtained by averaging the interaction $r_{12}^{-1}$. it is said to describe the average local potential at <script type="math/tex">x_1</script> arrived from <script type="math/tex">\chi_b</script>.</p>
 
 <script type="math/tex; mode=display">K_b(1)\ =\ \int dx_2\chi_b^*(2)r_{12}^{-1}\chi_a(2)</script>
 
-<p>First defining the molecule:</p>
+<p>First a molecule is defined using PySCF. We will be treating water as an example. We will describe our basis set with sto-3g. The code block below describes the position of each atom in cartesian coordinates.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>mol = gto.M(
 atom = [['O', (0.000000000000,  -0.143225816552,   0.000000000000)],
@@ -200,7 +200,7 @@ print Enuc
 <h5 id="read-in-the-one-electron-integrals">2. Read in the one-electron integrals.</h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>ovlp = myhf.get_ovlp()
-h1e =myhf.get_hcore()
+h1e = myhf.get_hcore()
 </code></pre>
 </div>
 
@@ -218,7 +218,7 @@ print np.shape(eri)
 <div class="highlighter-rouge"><pre class="highlight"><code>    def orthogonalize(Smatrix):
         S_eval,S_evec = spla.eigh(Smatrix)
         #diagonalize the matrix
-        S_eval_square=sp.zeros((7,7),dtype = np.float64)
+        S_eval_square=sp.zeros((7, 7),dtype = np.float64)
         for i in range(len(S_eval)):
            S_eval_square[i,i] = S_eval[i]
 
@@ -334,11 +334,11 @@ Etot_new  = 0
     print '###################### iteration',k,' #######################'
     Dold = np.copy(D)
 
-    ##### G matrix#####
+    ### G matrix ###
     G=G_matrix(Dold,eri)
     k+=1
 
-    #####fock matrix######
+    ### Fock matrix ###
     F = F_matrix(Hcore,G)
 
     ###calculate total energy###
@@ -349,26 +349,25 @@ Etot_new  = 0
     #### Find orbital coefficients ###
     C = diagonalize(SOM,F)
 
-    ### Denisty matrix###
+    ### Denisty matrix ###
     D = D_matrix(Hcore,C)
 
-    #RMS of D
+    #### RMSD of density matrix ###
     RMS = 0
     RMS=RMSD(D,Dold)
     print 'RMS \t',RMS
 
-    # energy difference
+    ### Energy difference ###
     E_diff = np.abs(Etot_new - Etot_old)
 
     if (E_diff &lt; E_threshold) and (RMS &lt; D_threshold):
         convergence = True
 
     print 'E_diff: ', E_diff
-    #print 'old', Etot_old
-    #print 'new',Etot_new
-print 'final (Ha)', Etot_new
-print 'error (Ha)', np.abs(Etot_new - true_value)
-print 'final step count', k
+
+print 'final (Ha)': {}.format( tot_new)
+print 'error (Ha): {}'.format(np.abs(Etot_new - true_value))
+print 'final step count: {}'.format(k)
 </code></pre>
 </div>
 
@@ -377,8 +376,6 @@ print 'final step count', k
     </div><!-- /.entry-wrapper -->
     <nav class="pagination" role="navigation">
       
-      
-        <a href="http://amandadumi.github.io/Hartree-Fock/" class="btn" title=" ">Next</a>
       
     </nav><!-- /.pagination -->
   </article>
