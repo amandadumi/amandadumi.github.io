@@ -2,30 +2,55 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <title type="text">Amanda Dumi</title>
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
-<link rel="self" type="application/atom+xml" href="http://amandadumi.github.io/feed.xml" />
-<link rel="alternate" type="text/html" href="http://amandadumi.github.io" />
-<updated>2017-05-19T19:21:23-04:00</updated>
-<id>http://amandadumi.github.io/</id>
+<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
+<link rel="alternate" type="text/html" href="http://localhost:4000" />
+<updated>2017-07-20T17:17:06-04:00</updated>
+<id>http://localhost:4000/</id>
 <author>
   <name>Amanda Dumi</name>
-  <uri>http://amandadumi.github.io/</uri>
+  <uri>http://localhost:4000/</uri>
   <email>Amanda.E.Dumi@gmail.com</email>
 </author>
 
 
 <entry>
+  <title type="html"><![CDATA[Barefoot Pythontessa]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/Recipe-script/" />
+  <id>http://localhost:4000/blog/Recipe-script</id>
+  <published>2017-07-20T00:00:00-04:00</published>
+  <updated>2017-07-20T00:00:00-04:00</updated>
+  <author>
+    <name>Amanda Dumi</name>
+    <uri>http://localhost:4000</uri>
+    <email>Amanda.E.Dumi@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;Although I intended to keep this a purely computational chemistry related blog, sometimes you do some fun things that can be shared. I was feeling a little stressed and decided I wanted to try my hand at cooking, which is usually a disaster. However, the most stressful part was finding a recipe. So instead of living in the stone age and writing the recipes down on notecards that inevitably get ingredients spilled on them and destroyed, I turned to Python. I categorize the recipes into three dictionaries: entrees, breakfast, dessert. From there I store the recipe URL under a second key in the nested dictionary.&lt;/p&gt;
+
+&lt;p&gt;The script is basically a glorified bookmarks bar, i.e. it’s very simple and pretty dumb, but also maybe useful to someone.&lt;/p&gt;
+
+&lt;p&gt;You can download the code &lt;a href=&quot;https://github.com/amandadumi/barefoot_pythontessa&quot; title=&quot;script repository&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/amandadumi/barefoot_pythontessa/master/image.gif&quot; alt=&quot;Alt Text&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/Recipe-script/&quot;&gt;Barefoot Pythontessa&lt;/a&gt; was originally published by Amanda Dumi at &lt;a href=&quot;http://localhost:4000&quot;&gt;Amanda Dumi&lt;/a&gt; on July 20, 2017.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
   <title type="html"><![CDATA[Hartree-Fock]]></title>
-  <link rel="alternate" type="text/html" href="http://amandadumi.github.io/blog/Hartree-Fock/" />
-  <id>http://amandadumi.github.io/blog/Hartree-Fock</id>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/Hartree-Fock/" />
+  <id>http://localhost:4000/blog/Hartree-Fock</id>
   <published>2017-05-08T00:00:00-04:00</published>
   <updated>2017-05-08T00:00:00-04:00</updated>
   <author>
     <name>Amanda Dumi</name>
-    <uri>http://amandadumi.github.io</uri>
+    <uri>http://localhost:4000</uri>
     <email>Amanda.E.Dumi@gmail.com</email>
   </author>
   <content type="html">
-    &lt;p&gt;When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my &lt;a href=&quot;https://github.com/amandadumi/HartreeFock&quot; title=&quot;Amanda&#39;s Hartree-Fock repository&quot;&gt;github.&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my &lt;a href=&quot;https://github.com/amandadumi/HartreeFock&quot; title=&quot;Amanda's Hartree-Fock repository&quot;&gt;github.&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Keeping in mind that our overall goal is to solve the  Schrödinger equation,
 &lt;script type=&quot;math/tex&quot;&gt;H\Psi = E \Psi&lt;/script&gt; we need to establish the form of our wavefunction. Here we will used a single determinant, in other words, a set of spin orbitals that when placed in a determinant represent the ground state energy. The restraint on these orbitals is that they be orthonormal, or in other words
@@ -52,13 +77,13 @@ For my code I utilized &lt;a href=&quot;https://github.com/sunqm/pyscf&quot; tit
 &lt;p&gt;First a molecule is defined using PySCF. We will be treating water as an example. We will describe our basis set with sto-3g. The code block below describes the position of each atom in cartesian coordinates.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mol = gto.M(
-atom = [[&#39;O&#39;, (0.000000000000,  -0.143225816552,   0.000000000000)],
-        [&#39;H&#39;, (1.638036840407,   1.136548822547,  -0.000000000000)],  
-        [&#39;H&#39;, (-1.638036840407,   1.136548822547,  -0.000000000000)]],  
-#basis = &#39;6-31G&#39;,  
-basis = &#39;sto-3g&#39;,  
+atom = [['O', (0.000000000000,  -0.143225816552,   0.000000000000)],
+        ['H', (1.638036840407,   1.136548822547,  -0.000000000000)],  
+        ['H', (-1.638036840407,   1.136548822547,  -0.000000000000)]],  
+#basis = '6-31G',  
+basis = 'sto-3g',  
 verbose = 1,  
-unit=&#39;b&#39;,  
+unit='b',  
 symmetry=False)  
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -69,32 +94,32 @@ symmetry=False)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h1 id=&quot;steps-to-hartree-fock&quot;&gt;Steps to Hartree-Fock&lt;/h1&gt;
+&lt;p&gt;#Steps to Hartree-Fock&lt;/p&gt;
 
-&lt;h5 id=&quot;define-the-variable-for-the-nuclear-nuclear-repulsion-energy&quot;&gt;1. Define the variable for the nuclear-nuclear repulsion energy&lt;/h5&gt;
+&lt;h5 id=&quot;1-define-the-variable-for-the-nuclear-nuclear-repulsion-energy&quot;&gt;1. Define the variable for the nuclear-nuclear repulsion energy&lt;/h5&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Enuc = gto.mole.energy_nuc(mol)
 print Enuc
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;read-in-the-one-electron-integrals&quot;&gt;2. Read in the one-electron integrals.&lt;/h5&gt;
+&lt;p&gt;#####2. Read in the one-electron integrals.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ovlp = myhf.get_ovlp()
 h1e = myhf.get_hcore()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;read-in-the-two-electron-integrals&quot;&gt;3. Read in the two-electron integrals&lt;/h5&gt;
+&lt;p&gt;#####3. Read in the two-electron integrals&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;eri = mol.intor(&#39;cint2e_sph&#39;,aosym=4)
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;eri = mol.intor('cint2e_sph',aosym=4)
 print np.shape(eri)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;as-a-check-described-by-evangelista-check-that-the-following-sums-are-correct&quot;&gt;4. As a check described by Evangelista, check that the following sums are correct&lt;/h5&gt;
+&lt;p&gt;#####4. As a check described by Evangelista, check that the following sums are correct&lt;/p&gt;
 
-&lt;h5 id=&quot;form-the-inverse-of-the-overlap-matrix&quot;&gt;5. Form the inverse of the overlap matrix.&lt;/h5&gt;
+&lt;p&gt;#####5. Form the inverse of the overlap matrix.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    def orthogonalize(Smatrix):
         S_eval,S_evec = spla.eigh(Smatrix)
@@ -112,7 +137,7 @@ print np.shape(eri)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;form-the-g-matrix&quot;&gt;6. form the G matrix&lt;/h5&gt;
+&lt;p&gt;#####6. form the G matrix&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def G_matrix(old_Dmatrix,two_e_integrals):
     G = np.zeros(np.shape(old_Dmatrix))
@@ -128,7 +153,7 @@ print np.shape(eri)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;form-the-fock-matrix-and-compute-the-total-energy&quot;&gt;7. Form the Fock matrix and compute the total energy&lt;/h5&gt;
+&lt;p&gt;#####7. Form the Fock matrix and compute the total energy&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def F_matrix(Hcore,Gmatrix):
         F = np.zeros(np.shape(Hcore))
@@ -139,7 +164,7 @@ print np.shape(eri)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;now-transform-the-fock-matrix-to-represent-orthonormal-atomic-orbitals&quot;&gt;8. now transform the Fock matrix to represent orthonormal atomic orbitals.&lt;/h5&gt;
+&lt;p&gt;#####8. now transform the Fock matrix to represent orthonormal atomic orbitals.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def orthogonalize(Smatrix):
     S_eval,S_evec = spla.eigh(Smatrix)
@@ -159,7 +184,7 @@ print np.shape(eri)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;find-the-eigenvalue-and-eigenvectors-of-the-fock-matrix-in-the-orthonormal-basis-set-and-transform-them-back-into-the-atomic-orbital-basis-set&quot;&gt;9. Find the eigenvalue and eigenvectors of the Fock matrix in the orthonormal basis set and transform them back into the atomic orbital basis set.&lt;/h5&gt;
+&lt;p&gt;#####9. Find the eigenvalue and eigenvectors of the Fock matrix in the orthonormal basis set and transform them back into the atomic orbital basis set.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def diagonalize(ortho, Fmatrix):
     F_prime = sp.dot(SOM,sp.dot(F,SOM))
@@ -169,7 +194,7 @@ print np.shape(eri)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;form-the-density-matrix&quot;&gt;10. Form the density matrix&lt;/h5&gt;
+&lt;p&gt;#####10. Form the density matrix&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def D_matrix(Hcore,C):
     D = np.zeros(np.shape(Hcore))
@@ -184,8 +209,8 @@ print np.shape(eri)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;test-for-convergence&quot;&gt;11. Test for convergence&lt;/h5&gt;
-&lt;p&gt;a. Energy Difference
+&lt;p&gt;#####11. Test for convergence
+  a. Energy Difference
   b. root mean square error of the density.&lt;/p&gt;
 
 &lt;p&gt;def RMSD(new_Dmatrix,old_Dmatrix):
@@ -195,7 +220,7 @@ print np.shape(eri)
         RMS = np.sqrt(RMS)
         return RMS&lt;/p&gt;
 
-&lt;h5 id=&quot;initialize-your-variables&quot;&gt;12. Initialize your variables&lt;/h5&gt;
+&lt;p&gt;#####12. Initialize your variables&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;myhf = scf.RHF(mol)
 E_hf = myhf.kernel()
@@ -209,10 +234,10 @@ Etot_new  = 0
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h5 id=&quot;repeat-until-convergence&quot;&gt;14. Repeat until convergence.&lt;/h5&gt;
+&lt;p&gt;#####14. Repeat until convergence.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;while (convergence == False):
-    print &#39;###################### iteration&#39;,k,&#39; #######################&#39;
+    print '###################### iteration',k,' #######################'
     Dold = np.copy(D)
 
     ### G matrix ###
@@ -236,7 +261,7 @@ Etot_new  = 0
     #### RMSD of density matrix ###
     RMS = 0
     RMS=RMSD(D,Dold)
-    print &#39;RMS \t&#39;,RMS
+    print 'RMS \t',RMS
 
     ### Energy difference ###
     E_diff = np.abs(Etot_new - Etot_old)
@@ -244,15 +269,15 @@ Etot_new  = 0
     if (E_diff &amp;lt; E_threshold) and (RMS &amp;lt; D_threshold):
         convergence = True
 
-    print &#39;E_diff: &#39;, E_diff
+    print 'E_diff: ', E_diff
 
-print &#39;final (Ha)&#39;: {}.format( tot_new)
-print &#39;error (Ha): {}&#39;.format(np.abs(Etot_new - true_value))
-print &#39;final step count: {}&#39;.format(k)
+print 'final (Ha)': {}.format( tot_new)
+print 'error (Ha): {}'.format(np.abs(Etot_new - true_value))
+print 'final step count: {}'.format(k)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-    &lt;p&gt;&lt;a href=&quot;http://amandadumi.github.io/blog/Hartree-Fock/&quot;&gt;Hartree-Fock&lt;/a&gt; was originally published by Amanda Dumi at &lt;a href=&quot;http://amandadumi.github.io&quot;&gt;Amanda Dumi&lt;/a&gt; on May 08, 2017.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/Hartree-Fock/&quot;&gt;Hartree-Fock&lt;/a&gt; was originally published by Amanda Dumi at &lt;a href=&quot;http://localhost:4000&quot;&gt;Amanda Dumi&lt;/a&gt; on May 08, 2017.&lt;/p&gt;
   </content>
 </entry>
 

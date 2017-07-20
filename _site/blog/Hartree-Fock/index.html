@@ -21,7 +21,7 @@
 
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://amandadumi.github.io/images/wintertrees.jpg">
+<meta name="twitter:image" content="http://localhost:4000/images/wintertrees.jpg">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
@@ -30,15 +30,15 @@
 <meta property="og:description" content="When beginning graduate school, I joined Dr. Madura’s computational research group with absolutely no programming experience. In implementing computational chemistry methods, density functional theory (DFT) was the first. However, understanding the theory of DFT required me to step back to other methods. Hartree-Fock tends to be the foundation for many other computational chemistry methods.  Reading through Szabo and Ostlund’s Modern Quantum Chemistry was helpful, but not quite enough to clarify the algorithm. So what you will find below is some framework code and theory I used to calculate HF. The full code can be found on my github.
 
 ">
-<meta property="og:url" content="http://amandadumi.github.io/blog/Hartree-Fock/">
+<meta property="og:url" content="http://localhost:4000/blog/Hartree-Fock/">
 <meta property="og:site_name" content="Amanda Dumi">
 
 
 
 
 
-<link rel="canonical" href="http://amandadumi.github.io/blog/Hartree-Fock/">
-<link href="http://amandadumi.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Amanda Dumi Feed">
+<link rel="canonical" href="http://localhost:4000/blog/Hartree-Fock/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Amanda Dumi Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -46,7 +46,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="http://amandadumi.github.io/assets/css/main.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
 <!-- Webfonts -->
 <script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
 
@@ -54,12 +54,12 @@
 
 <!-- HTML5 Shiv and Media Query Support -->
 <!--[if lt IE 9]>
-  <script src="http://amandadumi.github.io/assets/js/vendor/html5shiv.min.js"></script>
-  <script src="http://amandadumi.github.io/assets/js/vendor/respond.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
 <![endif]-->
 
 <!-- Modernizr -->
-<script src="http://amandadumi.github.io/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
 
 
 <!-- MathJax -->
@@ -68,17 +68,17 @@
 
 <!-- Icons -->
 <!-- 16x16 -->
-<link rel="shortcut icon" href="http://amandadumi.github.io/favicon.ico">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
 <!-- 32x32 -->
-<link rel="shortcut icon" href="http://amandadumi.github.io/favicon.png">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
 <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-<link rel="apple-touch-icon-precomposed" href="http://amandadumi.github.io/images/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
 <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://amandadumi.github.io/images/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
 <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://amandadumi.github.io/images/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
 <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://amandadumi.github.io/images/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
 
 </head>
 
@@ -89,16 +89,16 @@
 	    <ul>
       
 		    
-		    <li><a href="http://amandadumi.github.io/about/" >About</a></li>
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
 		  
 		    
-		    <li><a href="http://amandadumi.github.io/résumé/" >Résumé</a></li>
+		    <li><a href="http://localhost:4000/résumé/" >Résumé</a></li>
 		  
 		    
-		    <li><a href="http://amandadumi.github.io/blog/" >Blog</a></li>
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
 		  
 		    
-		    <li><a href="http://amandadumi.github.io/search/" >Search</a></li>
+		    <li><a href="http://localhost:4000/search/" >Search</a></li>
 		  
 	    </ul>
 	</nav>
@@ -109,9 +109,9 @@
 <header class="masthead">
 	<div class="wrap">
       
-  		<a href="http://amandadumi.github.io/" class="site-logo" rel="home" title="Amanda Dumi"><img src="http://amandadumi.github.io/images/wintertrees.jpg" width="200" height="200" alt="Amanda Dumi logo" class="animated fadeInDown"></a>
+  		<a href="http://localhost:4000/" class="site-logo" rel="home" title="Amanda Dumi"><img src="http://localhost:4000/images/wintertrees.jpg" width="200" height="200" alt="Amanda Dumi logo" class="animated fadeInDown"></a>
       
-      <h1 class="site-title animated fadeIn"><a href="http://amandadumi.github.io/">Amanda Dumi</a></h1>
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Amanda Dumi</a></h1>
 		<h2 class="site-description animated fadeIn" itemprop="description">Attempting to become better at programming, solid state physics, and gardening.</h2>
 	</div>
 </header><!-- /.masthead -->
@@ -134,7 +134,7 @@
       <footer class="entry-meta">
         
         
-          <img src="http://amandadumi.github.io/images/me_poster.jpg" class="bio-photo" alt="Amanda Dumi bio photo"></a>
+          <img src="http://localhost:4000/images/telluride_portrait.jpg" class="bio-photo" alt="Amanda Dumi bio photo"></a>
         
         <span class="author vcard">By <span class="fn">Amanda Dumi</span></span>
         <span class="entry-date date published"><time datetime="2017-05-08T00:00:00-04:00"><i class="fa fa-calendar-o"></i> May 08, 2017</time></span>
@@ -188,32 +188,32 @@ symmetry=False)
 </code></pre>
 </div>
 
-<h1 id="steps-to-hartree-fock">Steps to Hartree-Fock</h1>
+<p>#Steps to Hartree-Fock</p>
 
-<h5 id="define-the-variable-for-the-nuclear-nuclear-repulsion-energy">1. Define the variable for the nuclear-nuclear repulsion energy</h5>
+<h5 id="1-define-the-variable-for-the-nuclear-nuclear-repulsion-energy">1. Define the variable for the nuclear-nuclear repulsion energy</h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>Enuc = gto.mole.energy_nuc(mol)
 print Enuc
 </code></pre>
 </div>
 
-<h5 id="read-in-the-one-electron-integrals">2. Read in the one-electron integrals.</h5>
+<p>#####2. Read in the one-electron integrals.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>ovlp = myhf.get_ovlp()
 h1e = myhf.get_hcore()
 </code></pre>
 </div>
 
-<h5 id="read-in-the-two-electron-integrals">3. Read in the two-electron integrals</h5>
+<p>#####3. Read in the two-electron integrals</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>eri = mol.intor('cint2e_sph',aosym=4)
 print np.shape(eri)
 </code></pre>
 </div>
 
-<h5 id="as-a-check-described-by-evangelista-check-that-the-following-sums-are-correct">4. As a check described by Evangelista, check that the following sums are correct</h5>
+<p>#####4. As a check described by Evangelista, check that the following sums are correct</p>
 
-<h5 id="form-the-inverse-of-the-overlap-matrix">5. Form the inverse of the overlap matrix.</h5>
+<p>#####5. Form the inverse of the overlap matrix.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>    def orthogonalize(Smatrix):
         S_eval,S_evec = spla.eigh(Smatrix)
@@ -231,7 +231,7 @@ print np.shape(eri)
 </code></pre>
 </div>
 
-<h5 id="form-the-g-matrix">6. form the G matrix</h5>
+<p>#####6. form the G matrix</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>def G_matrix(old_Dmatrix,two_e_integrals):
     G = np.zeros(np.shape(old_Dmatrix))
@@ -247,7 +247,7 @@ print np.shape(eri)
 </code></pre>
 </div>
 
-<h5 id="form-the-fock-matrix-and-compute-the-total-energy">7. Form the Fock matrix and compute the total energy</h5>
+<p>#####7. Form the Fock matrix and compute the total energy</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>def F_matrix(Hcore,Gmatrix):
         F = np.zeros(np.shape(Hcore))
@@ -258,7 +258,7 @@ print np.shape(eri)
 </code></pre>
 </div>
 
-<h5 id="now-transform-the-fock-matrix-to-represent-orthonormal-atomic-orbitals">8. now transform the Fock matrix to represent orthonormal atomic orbitals.</h5>
+<p>#####8. now transform the Fock matrix to represent orthonormal atomic orbitals.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>def orthogonalize(Smatrix):
     S_eval,S_evec = spla.eigh(Smatrix)
@@ -278,7 +278,7 @@ print np.shape(eri)
 </code></pre>
 </div>
 
-<h5 id="find-the-eigenvalue-and-eigenvectors-of-the-fock-matrix-in-the-orthonormal-basis-set-and-transform-them-back-into-the-atomic-orbital-basis-set">9. Find the eigenvalue and eigenvectors of the Fock matrix in the orthonormal basis set and transform them back into the atomic orbital basis set.</h5>
+<p>#####9. Find the eigenvalue and eigenvectors of the Fock matrix in the orthonormal basis set and transform them back into the atomic orbital basis set.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>def diagonalize(ortho, Fmatrix):
     F_prime = sp.dot(SOM,sp.dot(F,SOM))
@@ -288,7 +288,7 @@ print np.shape(eri)
 </code></pre>
 </div>
 
-<h5 id="form-the-density-matrix">10. Form the density matrix</h5>
+<p>#####10. Form the density matrix</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>def D_matrix(Hcore,C):
     D = np.zeros(np.shape(Hcore))
@@ -303,8 +303,8 @@ print np.shape(eri)
 </code></pre>
 </div>
 
-<h5 id="test-for-convergence">11. Test for convergence</h5>
-<p>a. Energy Difference
+<p>#####11. Test for convergence
+  a. Energy Difference
   b. root mean square error of the density.</p>
 
 <p>def RMSD(new_Dmatrix,old_Dmatrix):
@@ -314,7 +314,7 @@ print np.shape(eri)
         RMS = np.sqrt(RMS)
         return RMS</p>
 
-<h5 id="initialize-your-variables">12. Initialize your variables</h5>
+<p>#####12. Initialize your variables</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>myhf = scf.RHF(mol)
 E_hf = myhf.kernel()
@@ -328,7 +328,7 @@ Etot_new  = 0
 </code></pre>
 </div>
 
-<h5 id="repeat-until-convergence">14. Repeat until convergence.</h5>
+<p>#####14. Repeat until convergence.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>while (convergence == False):
     print '###################### iteration',k,' #######################'
@@ -377,6 +377,8 @@ print 'final step count: {}'.format(k)
     <nav class="pagination" role="navigation">
       
       
+        <a href="http://localhost:4000/blog/Recipe-script/" class="btn" title="Barefoot Pythontessa">Next</a>
+      
     </nav><!-- /.pagination -->
   </article>
 </div><!-- /#main -->
@@ -398,19 +400,19 @@ print 'final step count: {}'.format(k)
 	
   
 	
-  <a href="http://amandadumi.github.io/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
 </div><!-- /.social-icons -->
 
   </footer>
 </div><!-- /.footer-wrapper -->
 
 <script type="text/javascript">
-  var BASE_URL = 'http://amandadumi.github.io';
+  var BASE_URL = 'http://localhost:4000';
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="http://amandadumi.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-<script src="http://amandadumi.github.io/assets/js/scripts.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
 
 
 

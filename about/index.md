@@ -9,6 +9,6 @@ image:
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
-#About Me
-
+About Me
+========
 I am a graduate student who is finishing up her Master of Science degree in Chemistry in July 2017. I will begin as a PhD candidate in the Computational Modeling and Simulations program at the University of Pittsburgh this September. 
