@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Comp Chem Adventures</title>
+    <link>http://amandadumi.github.io/posts/</link>
+    <description>Recent content in Posts on Comp Chem Adventures</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://amandadumi.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Barefoot Pythontessa</title>
+      <link>http://amandadumi.github.io/posts/2017-07-20-recipe-script/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://amandadumi.github.io/posts/2017-07-20-recipe-script/</guid>
+      <description>Although I intended to keep this a purely computational chemistry related blog, sometimes you do some fun things that can be shared. I was feeling a little stressed and decided I wanted to try my hand at cooking, which is usually a disaster. However, the most stressful part was finding a recipe. So instead of living in the stone age and writing the recipes down on notecards that inevitably get ingredients spilled on them and destroyed, I turned to Python.</description>
+    </item>
+    
+  </channel>
+</rss>
