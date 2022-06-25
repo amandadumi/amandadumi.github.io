@@ -9,9 +9,10 @@ feature:
 ---
 
 # Amanda Dumi
-A pdf version of my resemue can be found [here.]({{amandadumi.github.io}}/assets/cv.pdf)
-dumia@duq.edu  
-amandaedumi@gmail.com  
+A pdf version of my resemue can be found [here.]({{amandadumi.github.io}}/_gen/assets/aedumi_cv.pdf)
+## contact
+- aed63@pitt.edu
+- amandaedumi@gmail.com  
 
 
 
