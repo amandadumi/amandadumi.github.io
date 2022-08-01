@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Comp Chem Adventures</title>
+    <link>http://amandadumi.github.io/posts/</link>
+    <description>Recent content in Posts on Comp Chem Adventures</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://amandadumi.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Educatioinal Resources fo teh Ising Model</title>
+      <link>http://amandadumi.github.io/posts/2022-07-03-isingmodel/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://amandadumi.github.io/posts/2022-07-03-isingmodel/</guid>
+      <description>The short of it: Details the theory and resources that resulting from an Ising model project developed for a graduate Statistical mechanics course at the University of Pittsburgh. The main assignment is provided by a Jupyter notebook in which a framework to the Monte Carlo Modeling of the 2-D Ising Model is given and students are walked through developing the missing pieces. A complimentary website has smaller sections which get students accustomed to Python, installing necessary software, and working with Jupyter notebooks.</description>
+    </item>
+    
+    <item>
+      <title>Chemreps</title>
+      <link>http://amandadumi.github.io/posts/2020-02-25-chemreps/</link>
+      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://amandadumi.github.io/posts/2020-02-25-chemreps/</guid>
+      <description>The short of it: Chemreps is a python package which aims to create molecular representation as presented in the literature that can be used to generate machine learning models.
+Background Machine learning has become a highly viable tool within the quantum chemistry field. The hopes are that one can learn predict the surface of a chemical space while avoiding the need to calculate each and every molecule with a high-scaling method such as couple-cluster singles and doubles with perturbative triples (CCSD(T)).</description>
+    </item>
+    
+    <item>
+      <title>Barefoot Pythontessa</title>
+      <link>http://amandadumi.github.io/posts/2017-07-20-recipe-script/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://amandadumi.github.io/posts/2017-07-20-recipe-script/</guid>
+      <description>Although I intended to keep this a purely computational chemistry related blog, sometimes you do some fun things that can be shared. I was feeling a little stressed and decided I wanted to try my hand at cooking, which is usually a disaster. However, the most stressful part was finding a recipe. So instead of living in the stone age and writing the recipes down on notecards that inevitably get ingredients spilled on them and destroyed, I turned to Python.</description>
+    </item>
+    
+  </channel>
+</rss>
