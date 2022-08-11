@@ -51,7 +51,7 @@ Journal of Chemical Physics, 2022; 156, 144702. [DOI: 10.1063/5.0085982](https:/
 
 ### Q-GPU: A Recipe of Optimizations for Quantum Circuit Simulation Using GPUs
 ##### YILUN ZHAO, YUAN YAO, YANAN GUO, AMANDA DUMI, DEVIN M MULVEY, SHIV UPADHYAY, YOUTAO ZHANG, KENNETH D JORDAN, JUN YANG, XULONG TANG
-In Proceedings of the 28th IEEE International Symposium on High-Performance Computer Architecture [DOI: DOI: 10.1109/HPCA53966.2022.00059](https://ieeexplore.ieee.org/abstract/document/9773245)
+In Proceedings of the 28th IEEE International Symposium on High-Performance Computer Architecture [DOI: 10.1109/HPCA53966.2022.00059](https://ieeexplore.ieee.org/abstract/document/9773245)
 
 ### The Role of High-Order Electron Correlation Effects in a Model System for Non-valence Correlation-bound Anions
 ##### SHIV UPADHYAY, AMANDA DUMI, JAMES SHEE, KENNETH D. JORDAN
